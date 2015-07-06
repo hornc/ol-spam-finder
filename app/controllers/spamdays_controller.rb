@@ -1,7 +1,12 @@
 class SpamdaysController < ApplicationController
   def index
-    year, month = params[:month].split('-')    
-    @start_date = params[:month] + "-01"
+    if params[:month]
+      year, month = params[:month].split('-')
+    else
+      year = Date.current.year.to_s
+      month = Date.current.strftime('%m')
+    end
+    @start_date = "#{year}-#{month}-01"
     @month = Date::MONTHNAMES[month.to_i]
     @year = year
 
