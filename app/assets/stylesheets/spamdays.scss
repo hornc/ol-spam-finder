@@ -5,6 +5,8 @@
 
   .calendar-header {
      text-align: center;
+     font-family: sans-serif;
+     font-size: 20pt;
   }
 
   .calendar-header span {
@@ -13,6 +15,7 @@
 
   .calendar-header a {
      font-size: 200%;
+     text-decoration: none;
   }
 
   table {
@@ -54,3 +57,7 @@
     background-color: white;
   }
 
+  td a {
+    text-decoration: none;
+    font-family: sans-serif;
+  }
