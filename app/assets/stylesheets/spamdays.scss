@@ -1,0 +1,56 @@
+// Place all the styles related to the spamdays controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+  .calendar-header {
+     text-align: center;
+  }
+
+  .calendar-header span {
+    padding: 35px;
+  }
+
+  .calendar-header a {
+     font-size: 200%;
+  }
+
+  table {
+    width:50%; 
+    margin-left:25%; 
+    margin-right:25%;
+  }
+
+  table, th, td {
+//     border: 1px solid black;
+  }
+
+  td { width: 3em;
+       height: 3em;
+       text-align: center;
+  }
+
+  td.status-unknown {
+    background-color: lightgray;
+  }
+
+  td.status-spammed {
+    background-color: IndianRed;
+  }
+
+  td.status-clear {
+    background-color: lightgreen;
+  }
+
+  td.today {
+    background-color: gray; 
+  }
+
+  td.future {
+    background-color: #eee;
+  }
+
+  td.empty {
+    background-color: white;
+  }
+
