@@ -1,2 +1,30 @@
-<h1>Spamdays#show</h1>
-<h1><%= @day %></h1>
+<h1>
+  <%= link_to "<<", @day.previous_path %>
+    OL spam report for <%= @day.date %>
+  <%= link_to ">>", @day.next_path %>
+</h1>
+<%= link_to "Back to calendar view", spamdays_path(month: params[:month]) %>
+
+<div class='day-details'>
+  <p>
+  First checked: <%= @day.created_at %><br/>
+  <% unless @day.created_at == @day.updated_at %>
+    Last checked: <%= @day.updated_at %><br/>
+  <% end %>
+  <%= @day.new_books %> books created by <%= @day.book_adding_accounts %> users.<br/>
+  <%= @day.new_accounts %> new accounts created. <%= @day.new_book_adding_accounts %> added books.</br>
+  <%= @day.max_spammer_count %> spammers.
+    <% if true || @day.max_spammer_count != @day.last_spammer_count %>
+       ( <%= @day.max_spammer_count - @day.last_spammer_count %> have been cleaned since first check )
+    <% end %>
+  <br/><!--
+  <%= @day.max_spammer_count.to_f / @day.new_accounts %>% of new accounts were spam.<br/>
+  -->
+  <br/>
+  </p>
+</div>
+
+<div class="raw-output">
+  <%= format_raw_output(@day.raw_output) %>
+</div>
+<%= link_to "Back to calendar view", spamdays_path(month: params[:month]) %>

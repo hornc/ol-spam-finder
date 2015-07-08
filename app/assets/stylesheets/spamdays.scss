@@ -3,10 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+  h1, .calendar-header {
+    font-family: sans-serif;
+    font-size: 20pt;
+  }
+
   .calendar-header {
-     text-align: center;
-     font-family: sans-serif;
-     font-size: 20pt;
+    text-align: center;
   }
 
   .calendar-header span {
@@ -14,8 +17,50 @@
   }
 
   .calendar-header a {
-     font-size: 200%;
-     text-decoration: none;
+    font-size: 200%;
+    text-decoration: none;
+  }
+
+  .day-details {
+    font-family: sans-serif;
+    background-color: #ccc;
+    width: 40%;
+    padding: 10px;
+  }
+
+  .raw-output {
+    font-family: sans-serif;
+    width: 50%;
+    background-color: #f1f1f1;
+    padding: 50px;
+  }
+
+  .raw-output a, h1 a {
+    text-decoration: none;
+  }
+  .raw-output a:link {
+    color: black;
+  }
+
+  a.deleted-book {
+    font-size: 30%;
+  }
+
+  a.book-link {
+    font-style: italic;
+    font-size: 80%;
+  }
+
+  a.person:link {
+    font-size: 150%;
+    color: #400;
+  }
+
+  .admin a {
+    text-decoration: none;
+    font-variant: small-caps;
+    background-color: IndianRed;
+    color: black;
   }
 
   table {
@@ -28,9 +73,11 @@
 //     border: 1px solid black;
   }
 
-  td { width: 3em;
-       height: 3em;
-       text-align: center;
+  td {
+    width: 3em;
+    height: 3em;
+    text-align: center;
+    font-family: sans-serif;
   }
 
   td.status-unknown {
@@ -57,7 +104,7 @@
     background-color: white;
   }
 
-  td a {
+  .date, td a {
+    font-size: 22pt;
     text-decoration: none;
-    font-family: sans-serif;
   }

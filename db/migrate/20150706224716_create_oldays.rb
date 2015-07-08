@@ -3,8 +3,6 @@ class CreateOldays < ActiveRecord::Migration
     create_table :oldays do |t|
       t.date :date
       t.boolean :spammers_found, :default => nil
-      t.timestamp :last_check
-      t.timestamp :first_check
       t.integer :max_spammer_count, :default => 0
       t.integer :last_spammer_count, :default => 0
       t.text :raw_output, :default => ""

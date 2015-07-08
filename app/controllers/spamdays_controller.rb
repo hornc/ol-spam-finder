@@ -12,11 +12,11 @@ class SpamdaysController < ApplicationController
 
     @previous = Date.parse(@start_date).prev_month.strftime('%Y-%m')
     @next = Date.parse(@start_date).next_month.strftime('%Y-%m')
-
   end
 
   def show
-    @day = params[:day]
+    @day = Olday.find_by(date: "#{params[:month]}-#{params[:day]}")
+
   end
 
 end

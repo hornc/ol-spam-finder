@@ -16,8 +16,6 @@ ActiveRecord::Schema.define(version: 20150706224716) do
   create_table "oldays", force: :cascade do |t|
     t.date     "date"
     t.boolean  "spammers_found"
-    t.datetime "last_check"
-    t.datetime "first_check"
     t.integer  "max_spammer_count",        default: 0
     t.integer  "last_spammer_count",       default: 0
     t.text     "raw_output",               default: ""
