@@ -32,7 +32,7 @@ module SpamdaysHelper
         formatted += "<h3>#{$1}</h3>"
         in_spammers = false unless $1.match('SPAMMERS')
       when /^\/(people\/.+)$/
-        formatted += "#{account_link($1)} #{admin_link($1) if in_spammers} <br/>"
+        formatted += "#{admin_link($1) if in_spammers} #{account_link($1)}<br/>"
       when /\/(books\/OL[^ ]+)/
         formatted += "    #{book_link($1, previous_line)}<br/>"
       else
