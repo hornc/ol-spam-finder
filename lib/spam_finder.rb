@@ -146,7 +146,7 @@ class SpamFinder
     book.title && ( 
       book.title =~ /[【〚〖┫『《▶➸。ㆍ→≒♥⑧]/ || 
       # book.title.include?('tpm1004.com') || 
-      book.title =~ /\p{Hangul}.+\.(COM|com|net)/ || # Korean with .com
+      book.title =~ /\p{Hangul}.+(COM|com|net)/ || # Korean with .com
       book.title.include?('바카라')  || # Bacarat in Korean
       book.title.include?('＼＼') || 
       book.title =~ /\+\d{9}/ # phone numbers
