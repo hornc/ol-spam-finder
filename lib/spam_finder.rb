@@ -139,7 +139,7 @@ class SpamFinder
       more_users = false if accounts.size < limit
       accounts.each { |a| users << a['author']['key'] }
     end
-    @day.new_accounts = accounts.size
+    @day.new_accounts = usercount
     users
   end
 
