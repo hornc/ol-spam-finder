@@ -91,13 +91,13 @@ class SpamFinder
     users = []
     bookcount = 0
     more_books = true
-    limit = 5000  # API limits this to 1000
+    limit = 1000  # API limits this to 1000
     while more_books
-      puts " .... getting books from #{bookcount} to #{bookcount + 1000} ..."
+      puts " .... getting books from #{bookcount} to #{bookcount + limit} ..."
       response = Net::HTTP.get(URI(BASE+"recentchanges/#{year}/#{month}/#{day}/add-book.json?limit=#{limit}&offset=#{bookcount}"))
       books = JSON.parse(response)
       bookcount += books.size
-      more_books = false if books.size < 1000
+      more_books = false if books.size < limit
       books.each { |b| users << b['author']['key'] unless users.include?(b['author']['key']) }
     end
     puts " #{bookcount} books added by #{users.size} users on #{date}"
@@ -128,11 +128,17 @@ class SpamFinder
     end
     year, month, day = date.split('-')
     users = []
-    limit = 5000
-    response = Net::HTTP.get(URI(BASE+"recentchanges/#{year}/#{month}/#{day}/new-account.json?limit=#{limit}"))
-    accounts = JSON.parse(response)
-    puts "  Found #{accounts.size} accounts created on #{date}"
-    accounts.each { |a| users << a['author']['key'] }
+    usercount = 0
+    limit = 1000
+    more_users = true
+    while more_users
+      response = Net::HTTP.get(URI(BASE+"recentchanges/#{year}/#{month}/#{day}/new-account.json?limit=#{limit}&offset=#{usercount}"))
+      accounts = JSON.parse(response)
+      usercount += accounts.size
+      puts "  Found #{usercount} accounts created on #{date}"
+      more_users = false if accounts.size < limit
+      accounts.each { |a| users << a['author']['key'] }
+    end
     @day.new_accounts = accounts.size
     users
   end
