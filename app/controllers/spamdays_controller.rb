@@ -16,7 +16,21 @@ class SpamdaysController < ApplicationController
 
   def show
     @day = Olday.find_by(date: "#{params[:month]}-#{params[:day]}")
-
   end
 
+  def list
+    year, month, day = params[:date].split('-')
+    @accounts = []
+    unless day.nil?
+      @day = Olday.find_by(date: params[:date])
+      @accounts = @day.spammers
+    else
+      start = Date.parse(params[:date] + "-01")
+      (start...start >> 1).each do |d|
+        if day = Olday.find_by(date: d)
+          @accounts += day.spammers
+        end
+      end
+    end
+  end
 end

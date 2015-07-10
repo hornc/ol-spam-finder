@@ -42,6 +42,10 @@ module SpamdaysHelper
     raw(formatted)
   end
 
+  def list_link(account)
+    link_to account, "#{OL}admin/#{account}"
+  end
+
   def account_link(account)
     link_to account, "#{OL}#{account}", {class: "person"}
   end

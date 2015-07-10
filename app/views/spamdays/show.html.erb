@@ -3,7 +3,8 @@
     OL spam report for <%= @day.date %>
   <%= link_to ">>", @day.next_path %>
 </h1>
-<%= link_to "Back to calendar view", spamdays_path(month: params[:month]) %>
+<%= link_to "Back to calendar view", spamdays_path(month: params[:month]) %><br/>
+<%= link_to "Spammers as list", list_path(date: @day.date) %>
 
 <div class='day-details'>
   <p>
