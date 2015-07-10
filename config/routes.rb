@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
+  get 'list/' => 'spamdays#list', as: 'current'
   get 'list/:date' => 'spamdays#list', as: 'list'
   get ':month/' => 'spamdays#index'
   get ':month/:day' => 'spamdays#show'
