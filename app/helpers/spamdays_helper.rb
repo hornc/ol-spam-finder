@@ -43,7 +43,8 @@ module SpamdaysHelper
   end
 
   def list_link(account)
-    link_to link="#{OL}admin/#{account}", link
+    https = OL.sub('http://','https:/')
+    link_to link="#{https}admin/#{account}", link
   end
 
   def account_link(account)
