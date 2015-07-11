@@ -1,5 +1,5 @@
 module SpamdaysHelper
-  OL = "http://openlibrary.org/"
+  OL = "https://openlibrary.org/"
   def month_calendar_td_options
     ->(start_date, current_calendar_date) {
       # default_td_classes
@@ -43,8 +43,7 @@ module SpamdaysHelper
   end
 
   def list_link(account)
-    https = OL.sub('http://','https:/')
-    link_to link="#{https}admin/#{account}", link
+    link_to link="#{OL}admin/#{account}", link
   end
 
   def account_link(account)
