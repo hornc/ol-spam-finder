@@ -1,14 +1,14 @@
 require 'spam_finder'
 
 namespace :ol_spam do
-  desc "TODO"
+  desc "Check for spam on a particular date,  [YYYY-MM-DD]"
   task :date, [:date] => [:environment] do |t, args|
     puts "Args were: #{args}"
     finder = SpamFinder.new
     finder.check_day(args.date)
   end
 
-  desc "TODO"
+  desc "Check for spam on a particular month, [YYYY-MM]"
   task :month, [:month] => [:environment] do |t, args|
     finder = SpamFinder.new
     start = Date.parse(args.month + "-01")
@@ -19,12 +19,4 @@ namespace :ol_spam do
       finder.check_day(date)
     end
   end
-
-  desc "TODO"
-  task yesterday: :environment do
-    yday = (Date.current-1).strftime("%Y-%m-%d")
-    finder = SpamFinder.new
-    finder.check_day(yday)
-  end
-
 end
