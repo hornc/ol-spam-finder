@@ -1,31 +1,13 @@
 class SpamFinder
 
-#require 'rest-client'
-#require 'net/http'
-#require 'openlibrary'
-#require 'json'
-
   BASE = "http://openlibrary.org/"
-  LIMIT = 10 #2700
-  OFFSET = 0 #2499 
-
-  def initiialize()
-
-  end
+  LIMIT = 10
+  OFFSET = 0
 
   def check_day(date)
     client = Openlibrary::Client.new
     @day = Olday.find_or_initialize_by(date: Date.parse(date))
-    #@day.date = Date.parse(date)
-    @day.raw_output = ''
-    # ** Gets only users who have added over threshold books
-    # b = get_recently_added()
-    # users = users_added_over(b, 1)
 
-    # ** Gets the last LIMIT users from OFFSET
-    #users = recent_users()
-
-    #users = users_on(options[:date])
     users = keep_created_on(users_who_added_books_on(date), date)
 
     spammers = []
@@ -33,7 +15,12 @@ class SpamFinder
     other_raw = ""   # collect ouptput of other added works
 
     users.each do |user|
-      
+      # Skip checking user if we already know it is not a spammer.
+      if @day.good_users.include?(user)
+        puts "Good user: #{user}"
+        other_raw += "#{user}\n"
+        next
+      end
       puts user
       # for each user, check if their recent changes are spammy and add name to spammers
       response = Net::HTTP.get(URI(BASE+"recentchanges.json?author=#{user}&limit=10"))
@@ -67,7 +54,7 @@ class SpamFinder
       @day.max_spammer_count = @day.last_spammer_count
     end
     @day.spammers_found = !spammers.empty?
-    @day.raw_output += "CURRENT SPAMMERS:\n#{spammer_raw}\n\nOTHER ADDITIONS:\n#{other_raw}" 
+    @day.raw_output = "CURRENT SPAMMERS:\n#{spammer_raw}\n\nOTHER ADDITIONS:\n#{other_raw}"
     @day.save
   end
 
@@ -115,9 +102,9 @@ class SpamFinder
 
   def recent_users
     users = []
-    response = Net::HTTP.get(URI(BASE+"recentchanges/new-account.json?limit=#{LIMIT}&offset=#{OFFSET}"))
+    limit = 1000
+    response = Net::HTTP.get(URI(BASE+"recentchanges/new-account.json?limit=#{limit}&offset=#{OFFSET}"))
     new_accounts = JSON.parse(response)
-    # new_accounts.each {|a| users[a['author']['key']] = 1 }
     new_accounts.each { |a| users << a['author']['key'] } 
     users
   end
