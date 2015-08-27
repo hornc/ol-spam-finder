@@ -1,6 +1,6 @@
 class SplitRawOutput < ActiveRecord::Migration
   def up
-    #execute "create extension hstore"
+    execute "create extension hstore"
     add_column :oldays, :spammers, :hstore, default: {}
     add_column :oldays, :clear_users, :hstore, default: {}
 
