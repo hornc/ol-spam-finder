@@ -1,8 +1,8 @@
 class SplitRawOutput < ActiveRecord::Migration
   def up
     execute "create extension hstore"
-    add_column :oldays, :spammers, :hstore, default: {}
-    add_column :oldays, :clear_users, :hstore, default: {}
+    add_column :oldays, :spammers, :hstore, default: '', null: false
+    add_column :oldays, :clear_users, :hstore, default: '', null: false
 
     Olday.find_each do |day|
       split_raw(day)
