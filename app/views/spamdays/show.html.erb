@@ -24,8 +24,20 @@
   <br/>
   </p>
 </div>
-
-<div class="raw-output">
-  <%= format_raw_output(@day.raw_output) %>
+<div class="spammers raw-output">
+  <h3>Spammers</h3>
+  <% @day.spammers.each do |k, v| %>
+    <%= admin_link(k) %> <%= account_link(k) %></br>
+    <%= show_books(v) %></br>
+  <% end %>
 </div>
+
+<div class="good raw-output">
+  <h3>Good</h3>
+  <% @day.clear_users.each do |k, v| %>
+    <%= account_link(k) %></br>
+    <%= show_books(v) %> </br>
+  <% end %>
+</div>
+
 <%= link_to "Back to calendar view", spamdays_path(month: params[:month]) %>

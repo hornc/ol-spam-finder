@@ -28,12 +28,12 @@ class SpamdaysController < ApplicationController
     @accounts = []
     unless day.nil?
       @day = Olday.find_by(date: date)
-      @accounts = @day.spammers
+      @accounts = @day.spammers.keys
     else
       start = Date.parse(date + "-01")
       (start...start >> 1).each do |d|
         if day = Olday.find_by(date: d)
-          @accounts += day.spammers
+          @accounts += day.spammers.keys
         end
       end
     end

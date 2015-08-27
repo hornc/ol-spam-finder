@@ -1,5 +1,5 @@
 module SpamdaysHelper
-  OL = "https://openlibrary.org/"
+  OL = "https://openlibrary.org"
   def month_calendar_td_options
     ->(start_date, current_calendar_date) {
       # default_td_classes
@@ -43,15 +43,20 @@ module SpamdaysHelper
   end
 
   def list_link(account)
-    link_to link="#{OL}admin/#{account}", link
+    link_to link="#{OL}/admin#{account}", link
   end
 
   def account_link(account)
-    link_to account, "#{OL}#{account}", {class: "person"}
+    raw(link_to account, "#{OL}#{account}", {class: "person"})
   end
 
   def admin_link(account)
-    "<span class='admin'>#{link_to "&nbsp; admin &nbsp;".html_safe, "#{OL}admin/#{account}"}</span>"
+    raw("<span class='admin'>#{link_to "&nbsp; admin &nbsp;".html_safe, "#{OL}/admin#{account}"}</span>")
+  end
+
+  def show_books(books)
+    books = eval(books)
+    raw(books.collect { |k, v| book_link(k,v) }.join("</br>"))
   end
 
   def book_link(book, title)
@@ -60,6 +65,6 @@ module SpamdaysHelper
       title = "{ blank / deleted }"
       c = 'deleted-book'
     end
-    "#{'&nbsp;'*5}&bull; #{link_to title, "#{OL}#{book}", {class: c}}"
+    "#{'&nbsp;'*5}&bull; #{link_to title, "#{OL}/#{book}", {class: c}}"
   end
 end

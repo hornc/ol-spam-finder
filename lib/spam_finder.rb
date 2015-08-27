@@ -10,13 +10,12 @@ class SpamFinder
 
     users = keep_created_on(users_who_added_books_on(date), date)
 
-    spammers = []
     spammer_raw = "" # collect output of spam checks
     other_raw = ""   # collect ouptput of other added works
 
     users.each do |user|
       # Skip checking user if we already know it is not a spammer.
-      if @day.good_users.include?(user)
+      if @day.clear_users.keys.include?(user)
         puts "Good user: #{user}"
         other_raw += "#{user}\n"
         next
@@ -27,7 +26,7 @@ class SpamFinder
       changes = JSON.parse(response)
       
       spam_works = 0 
-      @user_works = ""
+      @user_works = {}
       changes.each do |c|
         next if c['kind'] != 'add-book' # skip change if not adding a book
         c['changes'].each do |item|
@@ -40,21 +39,22 @@ class SpamFinder
       end
 
       if spam_works > 0
-        spammers << user
-        spammer_raw += "#{user}\n  #{@user_works}\n"
+        @day.spammers[user] = @user_works
+        #spammer_raw += "#{user}\n  #{@user_works}\n"
         puts " SPAMMER FOUND: #{user}"
       else
-        other_raw += "#{user}\n  #{@user_works}\n"
+        #other_raw += "#{user}\n  #{@user_works}\n"
+        @day.clear_users[user] = @user_works
+        @day.spammers.delete(user) # clear user if it was in the spammers list
       end
     end
 
-    puts "  == #{spammers.length} SPAMMERS FOUND#{date ? ' on ' + date : ''} =="
-    @day.last_spammer_count = spammers.length
+    puts "  == #{@day.spammers.keys.length} SPAMMERS FOUND#{date ? ' on ' + date : ''} =="
+    @day.last_spammer_count = @day.spammers.keys.length
     if @day.last_spammer_count > @day.max_spammer_count
       @day.max_spammer_count = @day.last_spammer_count
     end
-    @day.spammers_found = !spammers.empty?
-    @day.raw_output = "CURRENT SPAMMERS:\n#{spammer_raw}\n\nOTHER ADDITIONS:\n#{other_raw}"
+    @day.spammers_found = !@day.spammers.keys.empty?
     @day.save
   end
 
@@ -134,7 +134,8 @@ class SpamFinder
     id = olid.sub('/books/', '')
     book = client.book(id)
     puts "  #{book.title}"
-    @user_works += "  #{book.title}\n  /books/#{id}\n"
+    #@user_works += "  #{book.title}\n  /books/#{id}\n"
+    @user_works["books/#{id}"] = book.title
 
     book.title && ( 
       book.title =~ /[【〚〖┫『《▶➸。ㆍ→≒♥⑧]/ || 
