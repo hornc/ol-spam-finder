@@ -12,7 +12,7 @@ class SpamFinder
 
     users.each do |user|
       # Skip checking user if the user/works have already been deleted
-      if @day.clear_users.keys.include?(user) && eval(@day.clear_users[user]).values.first.nil?
+      if @day.clear_users.keys.include?(user) && eval(@day.clear_users[user]).values.first.blank?
         puts "User already cleared: #{user}"
         next
       end
