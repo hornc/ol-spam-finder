@@ -11,9 +11,9 @@ class SpamFinder
     users = keep_created_on(users_who_added_books_on(date), date)
 
     users.each do |user|
-      # Skip checking user if we already know it is not a spammer.
-      if @day.clear_users.keys.include?(user)
-        puts "Good user: #{user}"
+      # Skip checking user if the user/works have already been deleted
+      if @day.clear_users.keys.include?(user) && eval(@day.clear_users[user]).values.first.nil?
+        puts "User already cleared: #{user}"
         next
       end
       puts user
@@ -37,9 +37,10 @@ class SpamFinder
       if spam_works > 0
         @day.spammers[user] = @user_works
         puts " SPAMMER FOUND: #{user}"
+        @day.clear_users.delete(user) # remove user if it was in the clear_users list
       else
         @day.clear_users[user] = @user_works
-        @day.spammers.delete(user) # clear user if it was in the spammers list
+        @day.spammers.delete(user) # remove user if it was in the spammers list
       end
     end
 
