@@ -139,8 +139,12 @@ class SpamFinder
 
     book.title && ( 
       book.title =~ /[【〚〖┫『《▶➸。ㆍ→≒♥⑧]/ || 
-      # book.title.include?('tpm1004.com') || 
-      book.title =~ /\p{Hangul}.+(COM|com|net)/ || # Korean with .com
+      # book.title.include?('tpm1004.com') ||
+      book.title.include?('-BAMWAR닷컴') ||
+      book.title.include?('★최신') ||
+      book.title =~ /(PDF|FREE|EBOOK|FONT|DRIVER) DOWNLOAD$/ ||
+      book.title.include?("POOR CHARLIE'S ALMANACK EBOOK") ||
+      book.title =~ /\p{Hangul}.+(COM|com|net|NET|CoM)/ || # Korean with .com .net etc
       book.title.include?('바카라')  || # Bacarat in Korean
       book.title.include?('＼＼') || 
       book.title =~ /\+\d{9}/ # phone numbers
