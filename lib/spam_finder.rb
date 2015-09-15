@@ -132,14 +132,14 @@ class SpamFinder
     @user_works["books/#{id}"] = book.title
 
     book.title && ( 
-      book.title =~ /[◁≫【〚〖┫『《▶➸。ㆍ→≒♥⑧∽]/ ||
+      book.title =~ /[☞◁≫【〚〖┫『《▶➸。ㆍ→≒♥⑧∽]/ ||
       # book.title.include?('tpm1004.com') ||
       book.title.include?('-BAMWAR닷컴') ||
       book.title.include?('★최신') ||
       book.title =~ /(PDF|FREE|EBOOK|FONT|DRIVER) DOWNLOAD$/ ||
       book.title.include?("POOR CHARLIE'S ALMANACK EBOOK") ||
       book.title =~ /Escorts in Dubai$/ ||
-      book.title =~ /\p{Hangul}.+([CcＣ]\s*[oO0ｏＯ]\s*[MmｍＭ]|[Nn]\s*[Ee]\s*[Tt])/ || # Korean with .com .net etc
+      book.title =~ /\p{Hangul}.+([CcＣ]\s*[oO0oｏＯ]\s*[MmｍＭ]|[Nn]\s*[Ee]\s*[Tt])/ || # Korean with .com .net etc
       book.title.include?('바카라')  || # Bacarat in Korean
       book.title.include?('＼＼') || 
       book.title =~ /\+\d{9}/ # phone numbers
