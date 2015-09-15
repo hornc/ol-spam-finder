@@ -132,7 +132,7 @@ class SpamFinder
     @user_works["books/#{id}"] = book.title
 
     book.title && ( 
-      book.title =~ /[◁≫【〚〖┫『《▶➸。ㆍ→≒♥⑧]/ ||
+      book.title =~ /[◁≫【〚〖┫『《▶➸。ㆍ→≒♥⑧∽]/ ||
       # book.title.include?('tpm1004.com') ||
       book.title.include?('-BAMWAR닷컴') ||
       book.title.include?('★최신') ||
