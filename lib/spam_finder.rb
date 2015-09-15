@@ -138,7 +138,8 @@ class SpamFinder
       book.title.include?('★최신') ||
       book.title =~ /(PDF|FREE|EBOOK|FONT|DRIVER) DOWNLOAD$/ ||
       book.title.include?("POOR CHARLIE'S ALMANACK EBOOK") ||
-      book.title =~ /\p{Hangul}.+([CcＣ][oO0ｏ][Mm]|[Nn][Ee][Tt])/ || # Korean with .com .net etc
+      book.title =~ /Escorts in Dubai$/ ||
+      book.title =~ /\p{Hangul}.+([CcＣ]\s*[oO0ｏＯ]\s*[MmｍＭ]|[Nn]\s*[Ee]\s*[Tt])/ || # Korean with .com .net etc
       book.title.include?('바카라')  || # Bacarat in Korean
       book.title.include?('＼＼') || 
       book.title =~ /\+\d{9}/ # phone numbers
