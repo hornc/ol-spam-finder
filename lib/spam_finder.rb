@@ -18,7 +18,7 @@ class SpamFinder
       end
       puts user
       # for each user, check if their recent changes are spammy and add name to spammers
-      response = Net::HTTP.get(URI(BASE+"recentchanges.json?author=#{user}&limit=10"))
+      response = Net::HTTP.get(URI(BASE+"recentchanges.json?author=#{user}&limit=#{LIMIT}"))
       changes = JSON.parse(response)
       
       spam_works = 0 
