@@ -53,12 +53,6 @@ class SpamFinder
     @day.save
   end
 
-  # get list of recently added books
-  def get_recently_added
-    response = Net::HTTP.get(URI(BASE+"recentchanges/add-book.json?limit=#{LIMIT}"))
-    JSON.parse(response)
-  end
-
   def users_added_over(changes, threshold = 0)
     users = Hash.new(0) 
     changes.each do |c|
