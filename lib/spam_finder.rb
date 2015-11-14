@@ -73,13 +73,15 @@ class SpamFinder
     users = []
     bookcount = 0
     more_books = true
+    last_seen_id = ""
     limit = 1000  # API limits this to 1000
     while more_books
       puts " .... getting books from #{bookcount} to #{bookcount + limit} ..."
       response = Net::HTTP.get(URI(BASE+"recentchanges/#{year}/#{month}/#{day}/add-book.json?limit=#{limit}&offset=#{bookcount}"))
       books = JSON.parse(response)
       bookcount += books.size
-      more_books = false if books.size < limit
+      more_books = false if books.size < limit || books.last['id'] == last_seen_id
+      last_seen_id = books.last['id']
       books.each { |b| users << b['author']['key'] unless users.include?(b['author']['key']) }
     end
     puts " #{bookcount} books added by #{users.size} users on #{date}"
