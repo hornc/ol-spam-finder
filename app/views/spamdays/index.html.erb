@@ -16,5 +16,5 @@
 
 <% end %>
 
-<%= link_to "All Spam Accounts List", list_path(date: (params[:month] || Date.current.strftime('%Y-%m'))) %> <br/>
+<%= link_to "List all spam accounts found in #{@month}", list_path(date: (params[:month] || Date.current.strftime('%Y-%m'))) %> <br/>
 <%= link_to "Go to Current Month", spamdays_path %>
