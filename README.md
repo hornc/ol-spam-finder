@@ -4,7 +4,9 @@ The main script that does the checking is [here](lib/spam_finder.rb), the rest i
 
 There are a number of rake tasks which can be run manually or scheduled to update the database to list all new users who have added works, and identify the ones that look like spam:
 ```
-rake ol_spam:date[date]    # Check for spam on a particular date,  [YYYY-MM-DD]
-rake ol_spam:month[month]  # Check for spam on a particular month, [YYYY-MM]
-rake ol_spam:yesterday     # Check OL for spam accounts created yesterday
+rake ol_spam:date[date]      # Check for spam on a particular date,  [YYYY-MM-DD]
+rake ol_spam:month[month]    # Check for spam on a particular month, [YYYY-MM]
+rake ol_spam:yesterday       # Check OL for spam accounts created YESTERDAY
+rake ol_spam:current_month   # Check OL for spam accounts for all days in the CURRENT month
+rake ol_spam:previous_month  # Check OL for spam accounts for all days in the PREVIOUS month
 ```
