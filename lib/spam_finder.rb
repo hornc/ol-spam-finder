@@ -139,7 +139,7 @@ class SpamFinder
       book.title.include?('바카라')  || # Bacarat in Korean
       book.title.include?('＼＼') || 
       book.title =~ /\+\d{9}/ || # phone numbers
-      book.title =~ /Q.*\d{9}\p{Han}+/ # Chinese degree /w phone number spam
+      book.title =~ /\d{9}.*\p{Han}+/ # Chinese /w phone number spam
     )
   end
 
