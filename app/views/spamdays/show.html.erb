@@ -4,11 +4,11 @@
   <%= link_to ">>", @day.next_path %>
 </h1>
 <%= link_to "Back to calendar view", spamdays_path(month: params[:month]) %><br/>
-<%= link_to "Spammers as list", list_path(date: @day.date) %>
+<%= link_to "Spammers as list", list_path(date: @day.date) if @day.spammers_found %>
 
 <div class='day-details'>
   <p>
-  First checked: <%= @day.created_at %><br/>
+  First checked: <% if @day.created_at %> <%= @day.created_at %> <% else %> <b>UNCHECKED</b> <% end %><br/>
   <% unless @day.created_at == @day.updated_at %>
     Last checked: <%= @day.updated_at %><br/>
   <% end %>
@@ -24,20 +24,21 @@
   <br/>
   </p>
 </div>
-<div class="spammers raw-output">
-  <h3>Spammers</h3>
-  <% @day.spammers.each do |k, v| %>
-    <%= admin_link(k) %> <%= account_link(k) %></br>
-    <%= show_books(v) %></br>
-  <% end %>
-</div>
+<% if @day.created_at %>
+  <div class="spammers raw-output">
+    <h3>Spammers</h3>
+    <% @day.spammers.each do |k, v| %>
+      <%= admin_link(k) %> <%= account_link(k) %></br>
+      <%= show_books(v) %></br>
+    <% end %>
+  </div>
 
-<div class="good raw-output">
-  <h3>Good</h3>
-  <% @day.clear_users.each do |k, v| %>
-    <%= account_link(k) %></br>
-    <%= show_books(v) %> </br>
-  <% end %>
-</div>
-
+  <div class="good raw-output">
+    <h3>Good</h3>
+    <% @day.clear_users.each do |k, v| %>
+      <%= account_link(k) %></br>
+      <%= show_books(v) %> </br>
+    <% end %>
+  </div>
+<% end %>
 <%= link_to "Back to calendar view", spamdays_path(month: params[:month]) %>

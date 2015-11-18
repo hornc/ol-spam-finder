@@ -15,7 +15,7 @@ class SpamdaysController < ApplicationController
   end
 
   def show
-    @day = Olday.find_by(date: "#{params[:month]}-#{params[:day]}")
+    @day = Olday.find_or_initialize_by(date: "#{params[:month]}-#{params[:day]}")
   end
 
   def list
@@ -27,7 +27,7 @@ class SpamdaysController < ApplicationController
     end
     @accounts = []
     unless day.nil?
-      @day = Olday.find_by(date: date)
+      @day = Olday.find_or_initialize_by(date: date)
       @accounts = @day.spammers.keys
     else
       start = Date.parse(date + "-01")
