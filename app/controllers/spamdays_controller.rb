@@ -37,5 +37,11 @@ class SpamdaysController < ApplicationController
         end
       end
     end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @accounts }
+      format.text { render :text => @accounts.join("\n") }
+      format.xml  { render :xml  => @accounts.to_xml(:root => 'accounts') }
+    end
   end
 end
