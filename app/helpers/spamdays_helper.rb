@@ -43,7 +43,7 @@ module SpamdaysHelper
   end
 
   def list_link(account)
-    link_to link="#{OL}/admin#{account}", link
+    link_to link="#{OL}/admin#{account}#{'/edits' if params[:edits]}", link, :target => "_blank"
   end
 
   def account_link(account)
