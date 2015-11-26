@@ -8,6 +8,13 @@ namespace :ol_spam do
     finder.check_day(yday)
   end
 
+  desc "Check OL for spam accounts created TODAY"
+  task today: :environment do
+    day = (Date.current).strftime("%Y-%m-%d")
+    finder = SpamFinder.new
+    finder.check_day(day)
+  end
+
   desc "Check OL for spam accounts for all days in the CURRENT month"
   task current_month: :environment do
     month = (Date.current).strftime("%Y-%m")
