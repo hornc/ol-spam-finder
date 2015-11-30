@@ -1,5 +1,5 @@
+# Finds works added immediately to OL by newly created users and checks them for spamness
 class SpamFinder
-
   BASE = "http://openlibrary.org/"
   LIMIT = 10
   OFFSET = 0
@@ -27,7 +27,10 @@ class SpamFinder
         next if c['kind'] != 'add-book' # skip change if not adding a book
         c['changes'].each do |item|
           if item['key'].include?("/books/")
-            spam_works += 1 if is_spam?(client, item['key'])
+            book = get_book(client, item['key'])
+            puts "  #{book.title}"
+            @user_works[item['key'][1..-1]] = book.title
+            spam_works += 1 if is_spam?(book)
             break # only care about the first book of a change-set
           end
           break if spam_works > 1
@@ -121,15 +124,15 @@ class SpamFinder
     users
   end
 
-  def is_spam?(client, olid)
+  def get_book(client, olid)
     id = olid.sub('/books/', '')
-    book = client.book(id)
-    puts "  #{book.title}"
-    @user_works["books/#{id}"] = book.title
+    client.book(id)
+  end
 
+  # book is a Hashie::Mash as returned from the Openlibrary gem
+  def is_spam?(book)
     book.title && ( 
       book.title =~ /[☞◁≫【〚〖┫『《▶➸。ㆍ→≒♥⑧∽]/ ||
-      # book.title.include?('tpm1004.com') ||
       book.title.include?('-BAMWAR닷컴') ||
       book.title.include?('★최신') ||
       book.title =~ /(PDF|FREE|EBOOK|FONT|DRIVER) DOWNLOAD$/ ||
