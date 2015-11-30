@@ -131,23 +131,19 @@ class SpamFinder
 
   # book is a Hashie::Mash as returned from the Openlibrary gem
   def is_spam?(book)
-    book.title && ( 
+    match = (
       book.title =~ /[☞◁≫【〚〖┫『《▶➸。ㆍ→≒♥⑧∽]/ ||
       book.title.include?('-BAMWAR닷컴') ||
       book.title.include?('★최신') ||
       book.title =~ /(PDF|FREE|EBOOK|FONT|DRIVER) DOWNLOAD$/ ||
       book.title.include?("POOR CHARLIE'S ALMANACK EBOOK") ||
       book.title =~ /Escorts in Dubai$/ ||
-      book.title =~ /\p{Hangul}.+([CcＣćĆ]\s*[oO0oｏＯ]\s*[MmｍＭḿḾ]|[Nn]\s*[Ee]\s*[Tt])/ || # Korean with .com .net etc
+      book.title =~ /\p{Hangul}.+([CcＣćĆｃ]\s*[oO0oｏＯ]\s*[MmｍＭḿḾ]|[Nn]\s*[Ee]\s*[Tt])/ || # Korean with .com .net etc
       book.title.include?('바카라')  || # Bacarat in Korean
       book.title.include?('＼＼') || 
       book.title =~ /\+\d{9}/ || # phone numbers
       book.title =~ /\d{9}.*\p{Han}+/ # Chinese /w phone number spam
     )
+    !!match
   end
-
-  def format_spammers(spammers)
-    spammers.each { |s| puts "https://openlibrary.org/admin#{s}" }
-  end
-
 end
