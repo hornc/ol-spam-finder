@@ -140,7 +140,8 @@ class SpamFinder
       book.title =~ /Escorts in Dubai$/ ||
       book.title =~ /\p{Hangul}.+([CcＣćĆｃ]\s*[oO0oｏＯ]\s*[MmｍＭḿḾ]|[Nn]\s*[Ee]\s*[Tt])/ || # Korean with .com .net etc
       book.title.include?('바카라')  || # Bacarat in Korean
-      book.title.include?('＼＼') || 
+      book.title.include?('＼＼') ||
+      book.title =~ /↔\d{4}/ || # double headed arrow with 4digits
       book.title =~ /\+\d{9}/ || # phone numbers
       book.title =~ /\d{9}.*\p{Han}+/ # Chinese /w phone number spam
     )

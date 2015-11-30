@@ -21,4 +21,9 @@ RSpec.describe SpamFinder do
       expect(subject.is_spam?(book)).to (be true), "Title at index #{i} not caught: #{title}"
     end
   end
+
+  it "does not error if there is no title" do
+    allow(book).to receive(:title) { nil }
+    expect(subject.is_spam?(book)).to be false
+  end
 end
