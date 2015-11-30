@@ -131,7 +131,7 @@ class SpamFinder
 
   # book is a Hashie::Mash as returned from the Openlibrary gem
   def is_spam?(book)
-    match = (
+    match = book.title && (
       book.title =~ /[☞◁≫【〚〖┫『《▶➸。ㆍ→≒♥⑧∽]/ ||
       book.title.include?('-BAMWAR닷컴') ||
       book.title.include?('★최신') ||
