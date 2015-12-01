@@ -138,12 +138,15 @@ class SpamFinder
       book.title =~ /(PDF|FREE|EBOOK|FONT|DRIVER) DOWNLOAD$/ ||
       book.title.include?("POOR CHARLIE'S ALMANACK EBOOK") ||
       book.title =~ /Escorts in Dubai$/ ||
-      book.title =~ /\p{Hangul}.+([CcＣćĆｃ]\s*[oO0oｏＯ]\s*[MmｍＭḿḾ]|[Nn]\s*[Ee]\s*[Tt])/ || # Korean with .com .net etc
+      book.title =~ /\p{Hangul}.+([CcＣćĆｃ⒞]\s*[oO0oｏＯ⒪]\s*[MmｍＭḿḾ⒨]|[Nn]\s*[Ee]\s*[Tt])/ || # Korean with .com .net etc
       book.title.include?('바카라')  || # Bacarat in Korean
       book.title.include?('＼＼') ||
       book.title =~ /↔\d{4}/ || # double headed arrow with 4digits
       book.title =~ /\+\d{9}/ || # phone numbers
-      book.title =~ /\d{9}.*\p{Han}+/ # Chinese /w phone number spam
+      book.title =~ /\d{9}.*\p{Han}+/ || # Chinese /w phone number spam
+      book.title =~ /\p{Hangul}+.*\d{9}/ || # Korean /w phone number spam
+      book.title =~ / 7 7 7 / || # 777 spam
+      book.title =~ /\p{Hangul}+.*([のфЖ] ?){2}/ # Korean double character spam
     )
     !!match
   end
