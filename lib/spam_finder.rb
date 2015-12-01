@@ -9,11 +9,12 @@ class SpamFinder
     @day = Olday.find_or_initialize_by(date: Date.parse(date))
 
     users = keep_created_on(users_who_added_books_on(date), date)
-
+    already_cleared_spammers_count = 0
     users.each do |user|
       # Skip checking user if the user/works have already been deleted
       if @day.clear_users.keys.include?(user) && eval(@day.clear_users[user]).values.first.blank?
         puts "User already cleared: #{user}"
+        already_cleared_spammers_count += 1
         next
       end
       puts user
@@ -47,10 +48,10 @@ class SpamFinder
       end
     end
 
-    puts "  == #{@day.spammers.keys.length} SPAMMERS FOUND#{date ? ' on ' + date : ''} =="
+    puts "  == #{@day.spammers.keys.length} SPAMMERS FOUND#{date ? ' on ' + date : ''}, #{already_cleared_spammers_count} cleared =="
     @day.last_spammer_count = @day.spammers.keys.length
-    if @day.last_spammer_count > @day.max_spammer_count
-      @day.max_spammer_count = @day.last_spammer_count
+    if (@day.last_spammer_count + already_cleared_spammers_count) > @day.max_spammer_count
+      @day.max_spammer_count = @day.last_spammer_count + already_cleared_spammers_count
     end
     @day.spammers_found = !@day.spammers.keys.empty?
     @day.save
