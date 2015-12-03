@@ -20,23 +20,21 @@ class SpamdaysController < ApplicationController
 
   def list
     if params[:date]
-      year, month, day = params[:date].split('-')
       date = params[:date]
+      year, month, day = date.split('-')
     else
       date = Date.current.strftime("%Y-%m")
     end
-    @accounts = []
-    unless day.nil?
-      @day = Olday.find_or_initialize_by(date: date)
-      @accounts = @day.spammers.keys
-    else
+
+    if day.nil?
       start = Date.parse(date + "-01")
-      (start...start >> 1).each do |d|
-        if day = Olday.find_by(date: d)
-          @accounts += day.spammers.keys
-        end
-      end
+      days = Olday.where(:date => start...start >> 1)
+    else
+      days = Olday.where(:date => Date.parse(date))
     end
+
+    @accounts = days.collect { |d| d.spammers.keys }.flatten
+
     respond_to do |format|
       format.html
       format.json { render :json => @accounts }
