@@ -143,7 +143,7 @@ class SpamFinder
       book.title.include?('바카라')  || # Bacarat in Korean
       book.title.include?('＼＼') ||
       book.title =~ /↔\d{4}/ || # double headed arrow with 4digits
-      book.title =~ /\+\d{9}/ || # phone numbers
+      book.title =~ /\+[\d ]{9}/ || # phone numbers
       book.title =~ /\d{9}.*\p{Han}+/ || # Chinese /w phone number spam
       book.title =~ /\p{Hangul}+.*\d{9}/ || # Korean /w phone number spam
       book.title =~ / 7 7 7 / || # 777 spam
