@@ -19,7 +19,8 @@ RSpec.describe SpamFinder do
       "Vashikaran Mantra Expert Aghori Tantrik In Mumbai +91 9950124567",
       "SOme spam +012345678 here",
       "비아그라 판매사이트 ∵ ENJ3、C0M ∵ 비아그라 정품 판매 프로코밀 판매",
-      "정품 비아그라 판매 ［ via7.me ］ 칙칙이 판매 정력제 구입 발기부전치료제 구입 최음제 추천 fgd",
+      "정품 비아그라 판매 ［ bia2.me ］ 칙칙이 판매 정력제 구입 발기부전치료제 구입 최음제 추천 fgd",
+      "최음제 판매 사이트 ［ bia2.me ］ 흥분제 추천 흥분제 구입 프로코밀 효과 레비트라 정품 구입 ",
       #"띵동사이트◇Т­Ι­Μ­Ε 8­2 ，ｃ­О­Μ◇코드:kiss",
     ]
   end
