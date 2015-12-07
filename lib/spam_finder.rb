@@ -147,7 +147,8 @@ class SpamFinder
       book.title =~ /\d{9}.*\p{Han}+/ || # Chinese /w phone number spam
       book.title =~ /\p{Hangul}+.*\d{9}/ || # Korean /w phone number spam
       book.title =~ / 7 7 7 / || # 777 spam
-      book.title =~ /\p{Hangul}+.*([のфЖ] ?){2}/ # Korean double character spam
+      book.title =~ /\p{Hangul}+.*([のфЖ] ?){2}/ || # Korean double character spam
+      book.title =~ /비아그라/
     )
     !!match
   end
