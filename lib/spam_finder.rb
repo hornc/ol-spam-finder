@@ -144,6 +144,7 @@ class SpamFinder
       book.title.include?('＼＼') ||
       book.title =~ /↔\d{4}/ || # double headed arrow with 4digits
       book.title =~ /\+[\d ]{9}/ || # phone numbers
+      book.title =~ /\d{2}[- \.]\d{10}/ || # more phone number formats
       book.title =~ /\d{9}.*\p{Han}+/ || # Chinese /w phone number spam
       book.title =~ /\p{Hangul}+.*\d{9}/ || # Korean /w phone number spam
       book.title =~ / 7 7 7 / || # 777 spam
