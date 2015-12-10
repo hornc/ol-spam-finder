@@ -22,12 +22,22 @@ RSpec.describe SpamFinder do
       "정품 비아그라 판매 ［ bia2.me ］ 칙칙이 판매 정력제 구입 발기부전치료제 구입 최음제 추천 fgd",
       "최음제 판매 사이트 ［ bia2.me ］ 흥분제 추천 흥분제 구입 프로코밀 효과 레비트라 정품 구입 ",
       "1 CALL 91-8875212345 online love marriage specialist baba ji Germany",
+      "կ우송대원룸_010-6677-1923_կ수수료무료_자양동원룸կ",
       #"띵동사이트◇Т­Ι­Μ­Ε 8­2 ，ｃ­О­Μ◇코드:kiss",
     ]
   end
 
+  let(:good_titles) do
+    [
+      "Much Ado About Nothing",
+      "Great Cocktails 1910-1923",
+      "道德經",
+      "로보카 폴리 마음을 전해",
+    ]
+  end
+
   it "classifies spammy titles as spam" do
-    spam_titles.each_with_index do |title, i|   
+    spam_titles.each_with_index do |title, i|
       allow(book).to receive(:title) { title }
       expect(subject.is_spam?(book)).to (be true), "Title at index #{i} not caught: #{title}"
     end
@@ -36,5 +46,12 @@ RSpec.describe SpamFinder do
   it "does not error if there is no title" do
     allow(book).to receive(:title) { nil }
     expect(subject.is_spam?(book)).to be false
+  end
+
+  it "does not flag good titles as spam" do
+    good_titles.each_with_index do |title, i|
+      allow(book).to receive(:title) { title }
+      expect(subject.is_spam?(book)).to (be false), "Good title at index #{i} mistakenly flagged as spam: #{title}"
+    end
   end
 end

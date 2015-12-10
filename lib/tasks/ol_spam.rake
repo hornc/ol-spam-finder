@@ -24,7 +24,6 @@ namespace :ol_spam do
   task :revert => :environment do |t|
     today = Date.current
     days = Olday.where(:date => today << 1..today)
-    #days = Olday.where(:date => today - 2 ..today)
     accounts = days.collect { |d| d.spammers.keys }.flatten
 
     unless accounts.empty?
