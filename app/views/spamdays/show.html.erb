@@ -36,7 +36,7 @@
   <div class="good raw-output">
     <h3>Good</h3>
     <% @day.clear_users.each do |k, v| %>
-      <%= account_link(k) %></br>
+      <%= admin_link(k) %>  <%= account_link(k) %></br>
       <%= show_books(v) %> </br>
     <% end %>
   </div>
