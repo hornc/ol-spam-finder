@@ -80,7 +80,15 @@ class SpamFinder
       bookcount += books.size
       more_books = false if books.size < limit || books.last['id'] == last_seen_id
       last_seen_id = books.last['id']
-      books.each { |b| users << b['author']['key'] unless users.include?(b['author']['key']) }
+      books.each do |b|
+        if b['author'].nil?
+          # book added anonymously, use ip address as identifier
+          ip = "/ip/#{b['ip']}"
+          users << ip unless users.include?(ip)
+        else
+          users << b['author']['key'] unless users.include?(b['author']['key'])
+        end
+      end
     end
     puts " #{bookcount} books added by #{users.size} users on #{date}"
     @day.new_books = bookcount
