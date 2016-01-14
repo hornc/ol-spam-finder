@@ -8,7 +8,11 @@ class SpamFinder
     client = Openlibrary::Client.new
     @day = Olday.find_or_initialize_by(date: Date.parse(date))
 
-    users = keep_created_on(users_who_added_books_on(date), date)
+    ## either: users who added books on <date> who were created that date.
+    #users = keep_created_on(users_who_added_books_on(date), date)
+    ## OR: all users created on (past) <date>, were they _ever_ spammers
+    users = users_on(date)
+
     already_cleared_spammers_count = 0
     users.each do |user|
       # Skip checking user if the user/works have already been deleted
@@ -42,7 +46,7 @@ class SpamFinder
         @day.spammers[user] = @user_works
         puts " SPAMMER FOUND: #{user}"
         @day.clear_users.delete(user) # remove user if it was in the clear_users list
-      else
+      elsif changes.size > 1 # don't list users who have not made any additions or edits
         @day.clear_users[user] = @user_works
         @day.spammers.delete(user) # remove user if it was in the spammers list
       end
