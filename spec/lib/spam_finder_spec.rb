@@ -34,6 +34,7 @@ RSpec.describe SpamFinder do
     [
       "Much Ado About Nothing",
       "Great Cocktails 1910-1923",
+      "1955-1957 - Things happened",
       "道德經",
       "로보카 폴리 마음을 전해",
     ]
