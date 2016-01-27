@@ -23,7 +23,10 @@ RSpec.describe SpamFinder do
       "최음제 판매 사이트 ［ bia2.me ］ 흥분제 추천 흥분제 구입 프로코밀 효과 레비트라 정품 구입 ",
       "1 CALL 91-8875212345 online love marriage specialist baba ji Germany",
       "CALL +91=8875212345 online love marriage specialist baba ji Germany",
+      "divorce problems solution specialist blaba blab 
+       How to Get my＋９１--9 5 0 1 2 3 3 3 3 3 3 correct divorce problems solution",
       "未正常毕业加拿大文凭Q微541 123 123办理加拿大亚岗昆学院毕业证成绩单学历认证使馆认证文凭学生卡驾照 Blahblah",
+      "加拿大达尔豪斯大学毕业证真实认证Q/微信345.345.678文凭办理达尔豪斯大学毕业证成绩单使馆认证offer",
       "哪里办理OSU成绩单毕业证？Q/微信285 345 678文凭办理俄亥俄州立大学毕业证学历认证offer",
       "կ우송대원룸_010-6677-1923_կ수수료무료_자양동원룸կ",
       #"띵동사이트◇Т­Ι­Μ­Ε 8­2 ，ｃ­О­Μ◇코드:kiss",
