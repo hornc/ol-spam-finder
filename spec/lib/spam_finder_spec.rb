@@ -38,6 +38,12 @@ RSpec.describe SpamFinder do
       "Much Ado About Nothing",
       "Great Cocktails 1910-1923",
       "1955-1957 - Things happened",
+      "Bmw 6 Cylinder Coupes (100340a)",
+      "Volvo 1800, 1960-1973",
+      "Austin-Healey 3000 1959-67",
+      "something mk1 1933-1957 again",
+      #"something 3000 1925-1942 indeed",
+      "Chrysler 300, 1955-1970 Gold Portfolio",
       "道德經",
       "로보카 폴리 마음을 전해",
     ]
