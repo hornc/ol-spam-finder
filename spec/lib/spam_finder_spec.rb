@@ -29,7 +29,8 @@ RSpec.describe SpamFinder do
       "加拿大达尔豪斯大学毕业证真实认证Q/微信345.345.678文凭办理达尔豪斯大学毕业证成绩单使馆认证offer",
       "哪里办理OSU成绩单毕业证？Q/微信285 345 678文凭办理俄亥俄州立大学毕业证学历认证offer",
       "կ우송대원룸_010-6677-1923_կ수수료무료_자양동원룸կ",
-      #"띵동사이트◇Т­Ι­Μ­Ε 8­2 ，ｃ­О­Μ◇코드:kiss",
+      "硕士毕业证成绩单Q@微信28/123/4567办理美国(弗吉尼亚大学毕业证)弗吉尼亚大学教育部学历认证修改成绩单GPA|（University of Virginia）",
+      "Temple毕业证Q/微&信(285-123-456)代办理美国天普大学教育部学位认证毕业证成绩单文凭|（Temple University）",
     ]
   end
 
@@ -42,7 +43,7 @@ RSpec.describe SpamFinder do
       "Volvo 1800, 1960-1973",
       "Austin-Healey 3000 1959-67",
       "something mk1 1933-1957 again",
-      #"something 3000 1925-1942 indeed",
+      #"Austin-Healey 3000 1925-1942",
       "Chrysler 300, 1955-1970 Gold Portfolio",
       "道德經",
       "로보카 폴리 마음을 전해",

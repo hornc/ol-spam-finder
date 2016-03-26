@@ -157,7 +157,8 @@ class SpamFinder
       book.title =~ /\p{Hangul}+.*[\d\-]{9}/ || # Korean /w phone number spam
       book.title =~ / 7 7 7 / || # 777 spam
       book.title =~ /\p{Hangul}+.*([のфЖ] ?){2}/ || # Korean double character spam
-      book.title =~ /\w+\.\w{2,3}.*(비아그라|최음제|레비트라)/ # Viagra|Aphrodisiac|Levitra in Korean, with domain
+      book.title =~ /\w+\.\w{2,3}.*(비아그라|최음제|레비트라)/ || # Viagra|Aphrodisiac|Levitra in Korean, with domain
+      book.title =~ /微(&)?信.*\d/ # Chinese QQ spam
     )
     !!match
   end
