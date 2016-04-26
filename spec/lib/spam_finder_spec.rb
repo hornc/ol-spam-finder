@@ -32,6 +32,7 @@ RSpec.describe SpamFinder do
       "硕士毕业证成绩单Q@微信28/123/4567办理美国(弗吉尼亚大学毕业证)弗吉尼亚大学教育部学历认证修改成绩单GPA|（University of Virginia）",
       "Temple毕业证Q/微&信(285-123-456)代办理美国天普大学教育部学位认证毕业证成绩单文凭|（Temple University）",
       "精仿原件加拿大毕业证文凭/Q微(28/123/1234)高端办理加拿大UNBC北英属哥伦比亚大学毕业证学位证学历书成绩单毕业(证)&University of Northern British Columbia ",
+      "Bacall Associates - Forum Spammers extraordinaire",
     ]
   end
 

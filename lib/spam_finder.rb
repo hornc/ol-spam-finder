@@ -159,7 +159,8 @@ class SpamFinder
       book.title =~ /\p{Hangul}+.*([のфЖ] ?){2}/ || # Korean double character spam
       book.title =~ /\w+\.\w{2,3}.*(비아그라|최음제|레비트라)/ || # Viagra|Aphrodisiac|Levitra in Korean, with domain
       #book.title =~ /微(&)?信.*\d/ || # Chinese QQ spam
-      book.title =~ /Q.?微.*\d/ # Chinese QQ spam
+      book.title =~ /Q.?微.*\d/ || # Chinese QQ spam
+      book.title =~ /Bacall Associates/ # are spammers who spam
     )
     !!match
   end
