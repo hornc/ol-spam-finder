@@ -138,7 +138,7 @@ class SpamFinder
     client.book(id)
   end
 
-  # book is a Hashie::Mash as returned from the Openlibrary gem
+  # book is a Hashie::Mash as returned by the Openlibrary gem
   def is_spam?(book)
     match = book.title && (
       book.title =~ /[☞◁≫【〚〖┫『《▶➸。ㆍ→≒♥⑧∽★]/ ||
@@ -158,7 +158,8 @@ class SpamFinder
       book.title =~ / 7 7 7 / || # 777 spam
       book.title =~ /\p{Hangul}+.*([のфЖ] ?){2}/ || # Korean double character spam
       book.title =~ /\w+\.\w{2,3}.*(비아그라|최음제|레비트라)/ || # Viagra|Aphrodisiac|Levitra in Korean, with domain
-      book.title =~ /微(&)?信.*\d/ # Chinese QQ spam
+      #book.title =~ /微(&)?信.*\d/ || # Chinese QQ spam
+      book.title =~ /Q.?微.*\d/ # Chinese QQ spam
     )
     !!match
   end
