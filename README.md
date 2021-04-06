@@ -17,6 +17,7 @@ rake ol_spam:previous_month  # Check OL for spam accounts for all days in the PR
 
 
 ## License
+ol-spam-finder (DEPRECATED)
 Copyright © 2015-2016 Charles Horn.
 
 This program is free software: you can redistribute it and/or modify
